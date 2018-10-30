@@ -1,0 +1,22 @@
+body {
+    font-family: $theme-font;
+}
+
+header {
+    min-height: 10rem;
+}
+
+.siteTitle {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav {
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

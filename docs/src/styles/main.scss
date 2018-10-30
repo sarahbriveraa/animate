@@ -1,15 +1,12 @@
 
+@import 'reset';
 @import 'colors';
-$theme-font:  'Josefin Slab', verdana, sans-serif;
+@import 'fonts';
+@import 'header';
+@import 'typography';
+@import 'animations';
+@import 'button';
+@import 'mixins/breakpoints';
+@import 'layouts';
 
-body {
-  font-family: $theme-font;
-  background-color: $themeColor-Light;
-  h1, h2 {
-      color: $themeColor-Dark
-  }
-}
 
-header {
-background-color: #005198;
-}

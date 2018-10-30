@@ -2,14 +2,14 @@ import _ from 'lodash';
 import Chart from 'chart.js';
 import './styles/main.scss';
 
-function component() {
+/* function component() {
   let element = document.createElement('div');
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
   return element;
 }
 
-document.body.appendChild(component());
+document.body.appendChild(component()); */
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {

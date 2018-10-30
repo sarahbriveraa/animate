@@ -100,14 +100,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function component() {
+/* function component() {
   let element = document.createElement('div');
-  element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
   return element;
 }
 
-document.body.appendChild(component());
+document.body.appendChild(component()); */
 
 var ctx = document.getElementById("myChart");
 var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1___default.a(ctx, {
