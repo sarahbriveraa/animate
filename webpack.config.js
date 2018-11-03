@@ -5,9 +5,8 @@ module.exports = {
   watch: true,
   entry: './docs/src/index.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'docs/dist/'),
-    publicPath: '/docs/dist'
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'docs/dist/')
   },
   mode: 'none',
   module: {
@@ -52,7 +51,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
+      filename: 'main.css',
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
