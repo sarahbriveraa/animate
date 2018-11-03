@@ -3,10 +3,12 @@
 @import 'colors';
 @import 'fonts';
 @import 'header';
+@import 'regions';
 @import 'typography';
 @import 'animations';
 @import 'button';
 @import 'mixins/breakpoints';
-@import 'layouts';
+@import 'layouts/maxwidth';
+@import 'layouts/2column';
 
 

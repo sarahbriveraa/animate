@@ -1,9 +1,11 @@
 body {
-    font-family: $theme-font;
+    font-family: $theme-font-primary;
+    font-weight: 300;
 }
 
 header {
     min-height: 10rem;
+    margin-top: 3rem;
 }
 
 .siteTitle {
@@ -19,4 +21,14 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    width:100%;
 }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: $white;
+  }

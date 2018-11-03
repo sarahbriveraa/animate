@@ -1,9 +1,19 @@
-button {
+.btn-mainnav {
     padding: 1.3rem;
     border: none;
-    background-color: $midnight;
+    color: $midnight;
     font-size: 1rem;
-    &:hover{
-        background-color: $deepnight;
+    min-width: 5%;
+
+    svg {
+        margin-right: .6rem;
+    }
+
+    &:hover {
+        svg {
+            animation: .5s rotateUpLeft forwards;
+        }
+        color: $butternut;
+
     }
 }
