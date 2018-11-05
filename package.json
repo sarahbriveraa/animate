@@ -28,7 +28,8 @@
     "lodash": "^4.17.11",
     "three": "^0.98.0",
     "three-gltf-loader": "^1.98.0",
-    "three-orbitcontrols": "^2.96.3"
+    "three-orbitcontrols": "^2.96.3",
+    "three-trackballcontrols": "0.0.7"
   },
   "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",

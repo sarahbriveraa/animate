@@ -11,72 +11,31 @@ import './pages/fun.html';
 import * as THREE from 'three';
 import GLTFLoader from 'three-gltf-loader';
 import OrbitControls from 'three-orbitcontrols';
+import TrackballControls from 'three-trackballcontrols';
 import WEBGL from './scripts/webgl';
  
 fontawesome.library.add(regular)
 fontawesome.library.add(solid)
 fontawesome.library.add(brands)
 
-//const loader = new GLTFLoader();
 
-/*
-var scene = new THREE.Scene();
-//var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
-
-var light = new THREE.DirectionalLight( 0xffffff, 1 );
-light.position.set( 10, 10, 10 );
-scene.add( light );
-//camera.position.z = 10;
-
-// Load a glTF resource
-loader.load(
-	// resource URL
-	'assets/models/duck.gltf',
-	// called when the resource is loaded
-	function ( gltf ) {
-
-		scene.add( gltf.scene );
-
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Scene
-		gltf.scenes; // Array<THREE.Scene>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
-	},
-	// called while loading is progressing
-	function ( xhr ) {
-
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-	},
-	// called when loading has errors
-	function ( error ) {
-
-		console.log( 'An error happened' );
-
-	}
-);*/
-
-/* if ( WEBGL.isWebGLAvailable() === false ) {
-    document.body.appendChild( WEBGL.getWebGLErrorMessage() );
-} */
 var container, controls;
 var camera, scene, renderer, light;
 init();
 animate();
 function init() {
     container = document.createElement( 'div' );
-    document.body.appendChild( container );
+    document.getElementsByClassName("region-hero")[0].appendChild( container );
     camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
     camera.position.set( - 1.8, 0.9, 10 );
-    controls = new OrbitControls( camera );
+    controls = new OrbitControls(camera, container);
+    //controls = new TrackballControls( camera , container);
     controls.target.set( 0, - 0.2, - 0.2 );
+    controls.minDistance = 5;
+    controls.maxDistance = 20;
+
     controls.update();
+ 
     // envmap
     var path = 'assets/textures/Bridge2/';
     var format = '.jpg';

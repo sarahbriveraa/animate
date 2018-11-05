@@ -3,5 +3,5 @@ var app = express();
 
 app.use(express.static(__dirname + '/docs/dist'));
 
-app.listen('3000');
-console.log('working on 3000');
+app.listen('3006');
+console.log('working on 3006');
