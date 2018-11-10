@@ -130,72 +130,84 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- 
+
 _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_2__["default"].library.add(_fortawesome_fontawesome_free_regular__WEBPACK_IMPORTED_MODULE_3__["default"])
 _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_2__["default"].library.add(_fortawesome_fontawesome_free_solid__WEBPACK_IMPORTED_MODULE_4__["default"])
 _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_2__["default"].library.add(_fortawesome_fontawesome_free_brands__WEBPACK_IMPORTED_MODULE_5__["default"])
 
 
 var container, controls;
-var camera, scene, renderer, light;
-init();
-animate();
-function init() {
-    container = document.createElement( 'div' );
-    document.getElementsByClassName("region-hero")[0].appendChild( container );
-    camera = new three__WEBPACK_IMPORTED_MODULE_10__["PerspectiveCamera"]( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
-    camera.position.set( - 1.8, 0.9, 10 );
-    controls = new three_orbitcontrols__WEBPACK_IMPORTED_MODULE_12___default.a(camera, container);
-    //controls = new TrackballControls( camera , container);
-    controls.target.set( 0, - 0.2, - 0.2 );
-    controls.minDistance = 5;
-    controls.maxDistance = 20;
+var camera, scene, light;
+container = document.querySelector("canvas");
+const renderer = new three__WEBPACK_IMPORTED_MODULE_10__["WebGLRenderer"]({
+    canvas: container,
+    antialias: true
+});
 
-    controls.update();
- 
-    // envmap
-    var path = 'assets/textures/Bridge2/';
-    var format = '.jpg';
-    var envMap = new three__WEBPACK_IMPORTED_MODULE_10__["CubeTextureLoader"]().load( [
-        path + 'posx' + format, path + 'negx' + format,
-        path + 'posy' + format, path + 'negy' + format,
-        path + 'posz' + format, path + 'negz' + format
-    ] );
-    scene = new three__WEBPACK_IMPORTED_MODULE_10__["Scene"]();
-    scene.background = envMap;
-    light = new three__WEBPACK_IMPORTED_MODULE_10__["HemisphereLight"]( 0xbbbbff, 0x444422 );
-    light.position.set( 0, 1, 0 );
-    scene.add( light );
-    // model
-    var loader = new three_gltf_loader__WEBPACK_IMPORTED_MODULE_11___default.a();
-    loader.load( 'assets/models/untitled.gltf', function ( gltf ) {
-        gltf.scene.traverse( function ( child ) {
-            if ( child.isMesh ) {
-                child.material.envMap = envMap;
-            }
-        } );
-        scene.add( gltf.scene );
-    }, undefined, function ( e ) {
-        console.error( e );
-    } );
-    renderer = new three__WEBPACK_IMPORTED_MODULE_10__["WebGLRenderer"]( { antialias: true } );
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.gammaOutput = true;
-    renderer.setClearColor (0xff0000, 1);
-    container.appendChild( renderer.domElement );
-    window.addEventListener( 'resize', onWindowResize, false );
+//camera
+camera = new three__WEBPACK_IMPORTED_MODULE_10__["PerspectiveCamera"](45, window.innerWidth / window.innerHeight, 0.25, 20);
+camera.position.set(-1.8, 0.9, 10);
+
+//controls
+controls = new three_orbitcontrols__WEBPACK_IMPORTED_MODULE_12___default.a(camera, container);
+//controls = new TrackballControls( camera , container);
+controls.target.set(0, -0.2, -0.2);
+controls.minDistance = 5;
+controls.maxDistance = 20;
+
+controls.update();
+
+// envmap
+var path = 'assets/textures/Bridge2/';
+var format = '.jpg';
+var envMap = new three__WEBPACK_IMPORTED_MODULE_10__["CubeTextureLoader"]().load([
+    path + 'posx' + format, path + 'negx' + format,
+    path + 'posy' + format, path + 'negy' + format,
+    path + 'posz' + format, path + 'negz' + format
+]);
+scene = new three__WEBPACK_IMPORTED_MODULE_10__["Scene"]();
+scene.background = envMap;
+light = new three__WEBPACK_IMPORTED_MODULE_10__["HemisphereLight"](0xbbbbff, 0x444422);
+light.position.set(0, 1, 0);
+scene.add(light);
+
+// model
+var loader = new three_gltf_loader__WEBPACK_IMPORTED_MODULE_11___default.a();
+loader.load('assets/models/untitled.gltf', function (gltf) {
+    gltf.scene.traverse(function (child) {
+        if (child.isMesh) {
+            child.material.envMap = envMap;
+        }
+    });
+    scene.add(gltf.scene);
+}, undefined, function (e) {
+    console.error(e);
+});
+
+function resizeCanvasToDisplaySize() {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (canvas.width !== width || canvas.height !== height) {
+        // you must pass false here or three.js sadly fights the browser
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        // set render target sizes here
+    }
 }
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+
+function animate(time) {
+    time *= 0.001; // seconds
+
+    resizeCanvasToDisplaySize();
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
 }
-//
-function animate() {
-    requestAnimationFrame( animate );
-    renderer.render( scene, camera );
-}
+
+requestAnimationFrame(animate);
 
 /***/ }),
 /* 1 */

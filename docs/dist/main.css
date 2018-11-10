@@ -80,6 +80,9 @@ nav {
   padding: 2rem;
   background-color: #d8e5f0; }
 
+.mycanvas {
+  width: 100%; }
+
 .h1 {
   font-family: "KoHo", sans-serif;
   font-size: 4rem;
