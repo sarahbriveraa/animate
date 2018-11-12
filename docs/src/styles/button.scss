@@ -1,18 +1,25 @@
 .btn-mainnav {
-    padding: 1.3rem;
+    padding: .9rem;
     border: none;
     color: $midnight;
-    font-size: 1rem;
-    min-width: 5%;
+    font-size: .9rem;
 
-    svg {
-        margin-right: .6rem;
+    @include bp-tablet {
+        font-size: 1.2rem;
+        padding: 1.3rem;
     }
+
+    min-width: 5%;
+    text-decoration: none;
+    font-weight:500;
+
+
 
     &:hover {
         svg {
             animation: .5s rotateUpLeft forwards;
         }
+
         color: $butternut;
 
     }

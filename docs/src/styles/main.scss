@@ -1,4 +1,5 @@
 
+@import './mixins/breakpoints';
 @import 'reset';
 @import 'colors';
 @import 'fonts';
@@ -7,8 +8,10 @@
 @import 'typography';
 @import 'animations';
 @import 'button';
+@import 'icons';
 @import 'mixins/breakpoints';
 @import 'layouts/maxwidth';
-@import 'layouts/2column';
+@import 'layouts/twocolumn';
+@import 'layouts/onecolumn';
 
 

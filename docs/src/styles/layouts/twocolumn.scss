@@ -1,20 +1,18 @@
 .twocolumn {
     display: grid;
     display: -ms-grid;
-    grid-gap: 0;
+    grid-gap: 1em;
     grid-auto-flow: row;
     margin: 0;
     align-items: stretch;
   
-    .region {
+    > .region {
       align-items: normal;
       overflow: hidden;
-      padding: 1rem;
-      margin: 1rem;
     }
   
     @for $i from 0 through 2 {
-      .region#{$i} {
+      > .region#{$i} {
         grid-row: #{$i};
         grid-column: 1;
         -ms-grid-row: #{$i};
@@ -24,7 +22,7 @@
   
     @include bp-tablet {
       @for $i from 0 through 2 {
-        .region#{$i} {
+        > .region#{$i} {
           grid-row: 1;
           grid-column: #{$i};
           -ms-grid-row: 1;
