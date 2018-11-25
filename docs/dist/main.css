@@ -82,7 +82,11 @@ header {
 
 .region-hero {
   min-height: calc(100vh - 14rem);
-  background-color: #d8e5f0; }
+  background-color: #d8e5f0;
+  padding-bottom: 2rem; }
+
+.region-content {
+  padding: 2rem 0; }
 
 .mycanvas {
   width: 100%;
@@ -90,6 +94,14 @@ header {
 
 .region-padding {
   padding: 1rem 2rem; }
+
+.callout ul {
+  list-style: disc;
+  margin-left: 3.5rem; }
+
+.maxwidth {
+  max-width: 1024px;
+  margin: 0 auto; }
 
 .h1 {
   font-family: "KoHo", sans-serif;
@@ -119,6 +131,15 @@ header {
       font-size: 1.2rem;
       margin-bottom: 1rem; } }
 
+.h4 {
+  font-size: 1rem;
+  margin-bottom: .4rem;
+  font-weight: 900; }
+  @media (min-width: 730px) {
+    .h4 {
+      font-size: 1rem;
+      margin-bottom: .4rem; } }
+
 p {
   margin-bottom: 1rem; }
 
@@ -141,6 +162,21 @@ p {
     transform: translate3d(0, 0, 0); }
   100% {
     transform: rotate3d(0, 0, 1, -19deg); } }
+
+@keyframes hideshow {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 100%; } }
+
+.hideMe {
+  opacity: 0;
+  padding: 0;
+  height: 0;
+  width: 0; }
+
+.showMe {
+  animation: 1s hideshow forwards; }
 
 .btn-mainnav {
   padding: .9rem;

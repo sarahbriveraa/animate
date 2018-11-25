@@ -1,6 +1,10 @@
 .region-hero {
     min-height: calc(100vh - 14rem);
     background-color:$dove;
+    padding-bottom: 2rem;
+}
+.region-content{
+    padding: 2rem 0;
 }
 .mycanvas {
     width:100%;
@@ -9,4 +13,16 @@
 
 .region-padding {
     padding: 1rem 2rem;
+}
+
+.callout {
+    ul {
+        list-style: disc;
+        margin-left: 3.5rem;
+    }
+
+}
+.maxwidth {
+    max-width: 1024px;
+    margin: 0 auto;
 }

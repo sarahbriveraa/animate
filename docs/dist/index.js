@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_fontawesome_free_regular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(188);
 /* harmony import */ var _fortawesome_fontawesome_free_solid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(189);
 /* harmony import */ var _fortawesome_fontawesome_free_brands__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(190);
-/* harmony import */ var _scripts_3dbrain_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(196);
+/* harmony import */ var _scripts_3dbrain_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(191);
 /* harmony import */ var _scripts_stickyheader_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(197);
 /* harmony import */ var _scripts_stickyheader_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_scripts_stickyheader_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _scripts_codechart_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(198);
@@ -107,6 +107,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _pages_fun_html__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(203);
 /* harmony import */ var _pages_fun_html__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_pages_fun_html__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _pages_work_html__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(204);
+/* harmony import */ var _pages_work_html__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_pages_work_html__WEBPACK_IMPORTED_MODULE_11__);
+
 
 
 
@@ -54068,6 +54071,174 @@ bunker(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(192);
+/* harmony import */ var three_gltf_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(193);
+/* harmony import */ var three_gltf_loader__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(three_gltf_loader__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(194);
+/* harmony import */ var three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(195);
+/* harmony import */ var three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _webgl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(196);
+/* harmony import */ var _webgl__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_webgl__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+//import { Interaction } from 'three.interaction';
+
+var container, controls;
+var camera, scene, light, mouse = {
+    x: 0,
+    y: 0
+  },
+  lastclickedElement;
+container = document.querySelector(".mycanvas");
+const renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
+  canvas: container,
+  antialias: true,
+  alpha: true
+});
+renderer.gammaInput = true;
+renderer.gammaOutput = true;
+
+
+//camera
+camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](40, window.innerWidth / window.innerHeight, .25, 20);
+camera.position.set(-1.8, -2, 12);
+
+
+//controls
+controls = new three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2___default.a(camera, container);
+//controls = new TrackballControls( camera , container);
+controls.target.set(0, .2, -0.2);
+controls.minDistance = 5;
+controls.maxDistance = 18;
+
+controls.update();
+
+// envmap
+var path = 'assets/textures/Bridge2/';
+var format = '.jpg';
+var envMap = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]().load([
+  path + 'posx' + format, path + 'negx' + format,
+  path + 'posy' + format, path + 'negy' + format,
+  path + 'posz' + format, path + 'negz' + format
+]);
+scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
+//scene.background = envMap;
+light = new three__WEBPACK_IMPORTED_MODULE_0__["HemisphereLight"](0xD7D1C1, 0x440035);
+light.position.set(0, 1, 0);
+var light2 = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](0xffffff, 1, 100);
+light2.position.set(0, 1, 0); //default; light shining from top
+light2.castShadow = false;
+scene.add(light, light2);
+
+// model
+var loader = new three_gltf_loader__WEBPACK_IMPORTED_MODULE_1___default.a();
+loader.load('assets/models/brain1.gltf', function (brain) {
+  brain.scene.traverse(function (child) {
+    if (child.isMesh) {
+      console.log(child.material);
+      /*        child.material = new THREE.MeshStandardMaterial( {
+              color: 0xE69A86,
+              metalness: 1,
+              roughness: .2,
+              envMap: envMap
+            }); */
+      child.material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshPhongMaterial"]({
+        color: 0xE69A86,
+        specular: 0xFFFFFF,
+        reflectivity: .1,
+        shininess: 100,
+        envMap: envMap
+      });
+
+    }
+  });
+  scene.add(brain.scene);
+}, undefined, function (e) {
+  console.error(e);
+});
+
+//setting the background to transparent
+renderer.setClearColor(0x000000, 0);
+scene.background = null;
+
+
+
+//interactive elements
+
+renderer.domElement.addEventListener('mousedown', function (event) {
+  console.log("lastclickedElement", lastclickedElement);
+  if (lastclickedElement && lastclickedElement.initialColor) {
+    lastclickedElement.material.color = lastclickedElement.initialColor;
+  }
+
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  var vector = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](mouse.x, mouse.y, 1);
+
+  vector.unproject(camera);
+
+  var raycaster = new three__WEBPACK_IMPORTED_MODULE_0__["Raycaster"](
+    camera.position,
+    vector.sub(camera.position).normalize()
+  );
+  var intersects = raycaster.intersectObjects(scene.children, true);
+
+  if (intersects.length) {
+
+    var clickedElement = intersects[0].object;
+    if (clickedElement.name == "temporal") {
+      //clickedElement.material.color = {r:100, g:0, b:0};
+      setColor(clickedElement);
+      document.querySelector(".info").classList.remove('hideMe');
+      document.querySelector(".info").classList.add('showMe');
+    }
+    return lastclickedElement = clickedElement;
+  }
+}, false);
+
+//
+function setColor(mesh) {
+  mesh.initialColor = mesh.material.color;
+  mesh.material.color = {
+    r: 100,
+    g: 0,
+    b: 0
+  };
+}
+
+function resizeCanvasToDisplaySize() {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  if (canvas.width !== width || canvas.height !== height) {
+    // you must pass false here or three.js will fight the browser
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+}
+
+function animate(time) {
+  time *= 0.001; // seconds
+
+  resizeCanvasToDisplaySize();
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+
+/***/ }),
+/* 192 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebGLRenderTargetCube", function() { return WebGLRenderTargetCube; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebGLRenderTarget", function() { return WebGLRenderTarget; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebGLRenderer", function() { return WebGLRenderer; });
@@ -102316,7 +102487,7 @@ function LensFlare() {
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -102327,7 +102498,7 @@ function LensFlare() {
  * @author Don McCurdy / https://www.donmccurdy.com
  */
 
-var THREE = __webpack_require__( 191 );
+var THREE = __webpack_require__( 192 );
 
 
 var _GLTFLoader = ( function () {
@@ -105692,10 +105863,10 @@ module.exports = _GLTFLoader;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* three-orbitcontrols addendum */ var THREE = __webpack_require__(191);
+/* three-orbitcontrols addendum */ var THREE = __webpack_require__(192);
 /**
  * @author qiao / https://github.com/qiao
  * @author mrdoob / http://mrdoob.com
@@ -106751,7 +106922,7 @@ Object.defineProperties( THREE.OrbitControls.prototype, {
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -106764,7 +106935,7 @@ Object.defineProperties( THREE.OrbitControls.prototype, {
  ** @author Jon Lim / http://jonlim.ca
  */
 
-var THREE = window.THREE || __webpack_require__(191);
+var THREE = window.THREE || __webpack_require__(192);
 
 var TrackballControls;
 module.exports = TrackballControls = function ( object, domElement ) {
@@ -107413,7 +107584,7 @@ TrackballControls.prototype = Object.create( THREE.EventDispatcher.prototype );
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports) {
 
 /**
@@ -107510,145 +107681,6 @@ var WEBGL = {
 	}
 
 };
-
-/***/ }),
-/* 196 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(191);
-/* harmony import */ var three_gltf_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(192);
-/* harmony import */ var three_gltf_loader__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(three_gltf_loader__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(193);
-/* harmony import */ var three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(194);
-/* harmony import */ var three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(three_trackballcontrols__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _webgl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(195);
-/* harmony import */ var _webgl__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_webgl__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-
-
-//import { Interaction } from 'three.interaction';
-
-var container, controls;
-var camera, scene, light,mouse = {
-  x: 0,
-  y: 0
-};
-container = document.querySelector(".mycanvas");
-const renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
-  canvas: container,
-  antialias: true,
-  alpha: true
-});
-
-
-//camera
-camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](45, window.innerWidth / window.innerHeight, 0.25, 20);
-camera.position.set(-1.8, 0.9, 10);
-
-//controls
-controls = new three_orbitcontrols__WEBPACK_IMPORTED_MODULE_2___default.a(camera, container);
-//controls = new TrackballControls( camera , container);
-controls.target.set(0, .2, -0.2);
-controls.minDistance = 5;
-controls.maxDistance = 20;
-
-controls.update();
-
-// envmap
-var path = 'assets/textures/Bridge2/';
-var format = '.jpg';
-var envMap = new three__WEBPACK_IMPORTED_MODULE_0__["CubeTextureLoader"]().load([
-  path + 'posx' + format, path + 'negx' + format,
-  path + 'posy' + format, path + 'negy' + format,
-  path + 'posz' + format, path + 'negz' + format
-]);
-scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-scene.background = envMap;
-light = new three__WEBPACK_IMPORTED_MODULE_0__["HemisphereLight"](0xbbbbff, 0x444422);
-light.position.set(0, 1, 0);
-scene.add(light);
-
-//const interaction = new Interaction(renderer, scene, camera);
-
-// model
-var loader = new three_gltf_loader__WEBPACK_IMPORTED_MODULE_1___default.a();
-loader.load('assets/models/brain1.gltf', function (brain) {
-  brain.scene.traverse(function (child) {
-    if (child.isMesh) {
-      child.material.envMap = envMap;
-    }
-  });
-  console.log("during brain", brain);
-  scene.add(brain.scene);
-  var object = brain.scene.getObjectByName( 'frontal', true ) //this is finding it
-  console.log("object", object);
-}, undefined, function (e) {
-  console.error(e);
-});
-console.log("scene", scene);
-
-//setting the background to transparent
-renderer.setClearColor(0x000000, 0);
-scene.background = null;
-renderer.gammaInput = true;
-renderer.gammaOutput = true;
-
-
-//interactive elements
-
-renderer.domElement.addEventListener('mousedown', function(event) {
-  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1; 
-  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1; 
-  var vector = new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](mouse.x, mouse.y, 1);
-
-  vector.unproject(camera);
-
-  var raycaster = new three__WEBPACK_IMPORTED_MODULE_0__["Raycaster"](
-      camera.position,
-      vector.sub(camera.position).normalize()
-  );
-  var intersects = raycaster.intersectObjects(scene.children, true);
-  console.log("intersects", intersects);
-  console.log("intersects[0]", intersects[0]);
-  if (intersects.length) {
-    console.log("You clicked something!");
-    if (intersects[0].object.name == "temporal") {
-      console.log("Temporal Clicked");
-    }
-
-  }
-}, false);
-
-//
-
-
-function resizeCanvasToDisplaySize() {
-  const canvas = renderer.domElement;
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
-  if (canvas.width !== width || canvas.height !== height) {
-    // you must pass false here or three.js will fight the browser
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  }
-}
-
-function animate(time) {
-  time *= 0.001; // seconds
-
-  resizeCanvasToDisplaySize();
-
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-}
-
-requestAnimationFrame(animate);
 
 /***/ }),
 /* 197 */
@@ -108276,6 +108308,12 @@ module.exports = function (css) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "pages/fun.html";
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pages/work.html";
 
 /***/ })
 /******/ ]);

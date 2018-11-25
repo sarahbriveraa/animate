@@ -32,3 +32,23 @@
   }
 }
 
+@keyframes hideshow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.hideMe {
+  opacity: 0;
+  padding:0;
+  height:0;
+  width:0;
+}
+.showMe {
+  animation: 1s hideshow forwards;
+}
+

@@ -10,6 +10,7 @@ import './scripts/stickyheader.js';
 import './scripts/codechart.js';
 import './styles/main.scss';
 import './pages/fun.html';
+import './pages/work.html';
 
 fontawesome.library.add(regular)
 fontawesome.library.add(solid)
