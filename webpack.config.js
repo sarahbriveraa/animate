@@ -2,6 +2,9 @@ const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
+  resolve: {
+    modules: [path.resolve(__dirname, 'docs'), 'node_modules']
+  },
   watch: true,
   entry: './docs/src/index.js',
   output: {

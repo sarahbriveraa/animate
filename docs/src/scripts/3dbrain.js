@@ -54,7 +54,7 @@ scene.add(light, light2);
 
 // model
 var loader = new GLTFLoader();
-loader.load('assets/models/brain1.gltf', function (brain) {
+loader.load('assets/models/brain2.gltf', function (brain) {
   brain.scene.traverse(function (child) {
     if (child.isMesh) {
       console.log(child.material);

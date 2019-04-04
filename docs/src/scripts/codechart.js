@@ -1,7 +1,8 @@
 
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-  type: 'horizontalBar',
+var canvas = document.getElementById("myChart");
+
+var myChart = new Chart(canvas, {
+  type: 'doughnut',
   responsive: 'true',
   data: {
     labels: ["SASS/Less", "JavaScript ES6", "React", "Angular 6", "BackboneJS", "NodeJS"],
@@ -20,7 +21,8 @@ var myChart = new Chart(ctx, {
   },
   options: {
     legend: {
-      display: false
+      display: false,
+      position: 'bottom'
     },
     layout: {
       padding: {
@@ -30,14 +32,19 @@ var myChart = new Chart(ctx, {
         bottom: 0
       }
     },
+    title: {
+      display: false,
+      text: 'Code Experience'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    },
     maintainAspectRatio: false,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
   }
 });
+
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("Hello World", 10, 50);
 

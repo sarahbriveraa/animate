@@ -128,6 +128,8 @@ _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_2__["default"].library.add(_fo
 _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_2__["default"].library.add(_fortawesome_fontawesome_free_brands__WEBPACK_IMPORTED_MODULE_5__["default"])
 
 
+
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -54136,7 +54138,7 @@ scene.add(light, light2);
 
 // model
 var loader = new three_gltf_loader__WEBPACK_IMPORTED_MODULE_1___default.a();
-loader.load('assets/models/brain1.gltf', function (brain) {
+loader.load('assets/models/brain2.gltf', function (brain) {
   brain.scene.traverse(function (child) {
     if (child.isMesh) {
       console.log(child.material);
@@ -107729,9 +107731,10 @@ var stickyHeader = (function () {
 /***/ (function(module, exports) {
 
 
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-  type: 'horizontalBar',
+var canvas = document.getElementById("myChart");
+
+var myChart = new Chart(canvas, {
+  type: 'doughnut',
   responsive: 'true',
   data: {
     labels: ["SASS/Less", "JavaScript ES6", "React", "Angular 6", "BackboneJS", "NodeJS"],
@@ -107750,7 +107753,8 @@ var myChart = new Chart(ctx, {
   },
   options: {
     legend: {
-      display: false
+      display: false,
+      position: 'bottom'
     },
     layout: {
       padding: {
@@ -107760,16 +107764,21 @@ var myChart = new Chart(ctx, {
         bottom: 0
       }
     },
+    title: {
+      display: false,
+      text: 'Code Experience'
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    },
     maintainAspectRatio: false,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
   }
 });
+
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("Hello World", 10, 50);
 
 
 

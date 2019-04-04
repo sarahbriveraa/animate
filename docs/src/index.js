@@ -15,3 +15,5 @@ import './pages/work.html';
 fontawesome.library.add(regular)
 fontawesome.library.add(solid)
 fontawesome.library.add(brands)
+
+
