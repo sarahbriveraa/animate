@@ -37,7 +37,7 @@ module.exports = {
             outputPath: 'pages/'
           }
         }],
-        exclude: path.resolve(__dirname, 'docs/src/index.html')
+        exclude: [path.resolve(__dirname, 'docs/src/index.html'), path.resolve(__dirname, 'docs/src/pages/fun.html')]
       },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -59,6 +59,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'docs/src/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'pages/fun.html',
+      template: 'docs/src/pages/fun.html'
     })
   ]
 };

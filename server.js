@@ -4,9 +4,6 @@ var app = express();
 const path = require('path');
 const router = express.Router();
 
-
-app.use(express.static(__dirname + '/docs/dist'));
-
 router.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/docs/dist/index.html'));
 });
@@ -18,6 +15,8 @@ router.get('/fun', function (req, res) {
 router.get('/work', function (req, res) {
     res.sendFile(path.join(__dirname + '/docs/dist/pages/work.html'));
 });
+
+app.use(express.static(__dirname + '/docs/dist'));
 
 app.use('/', router);
 

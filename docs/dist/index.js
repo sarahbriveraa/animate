@@ -110282,9 +110282,9 @@ module.exports = function (css) {
 
 /***/ }),
 /* 151 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "pages/fun.html";
+throw new Error("Module parse failed: Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type.\n> <!doctype html>\n| <html>\n| ");
 
 /***/ }),
 /* 152 */
