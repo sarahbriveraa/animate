@@ -1,6 +1,10 @@
+ Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+  color: '#000000',
+  font: {
+    size: 20}
+});
 
 var canvas = document.getElementById("myChart");
-
 var myChart = new Chart(canvas, {
   type: 'doughnut',
   responsive: 'true',
@@ -15,7 +19,7 @@ var myChart = new Chart(canvas, {
         '#e09535',
         '#10b798',
         '#0086ae',
-        '#005198'
+        '#0078E0'
       ]
     }]
   },
@@ -43,8 +47,3 @@ var myChart = new Chart(canvas, {
     maintainAspectRatio: false,
   }
 });
-
-var ctx = canvas.getContext("2d");
-ctx.font = "30px Arial";
-ctx.fillText("Hello World", 10, 50);
-
