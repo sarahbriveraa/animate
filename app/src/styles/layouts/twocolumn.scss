@@ -1,0 +1,42 @@
+.twocolumn {
+    display: grid;
+    display: -ms-grid;
+    grid-gap: 1em;
+    grid-auto-flow: row;
+    margin: 0;
+    align-items: stretch;
+  
+    > .region {
+      align-items: normal;
+      overflow: hidden;
+    }
+  
+    @for $i from 0 through 2 {
+      > .region#{$i} {
+        grid-row: #{$i};
+        grid-column: 1;
+        -ms-grid-row: #{$i};
+        -ms-grid-column: 1;
+      }
+    }
+  
+    @include bp-tablet {
+      @for $i from 0 through 2 {
+        > .region#{$i} {
+          grid-row: 1;
+          grid-column: #{$i};
+          -ms-grid-row: 1;
+          -ms-grid-column: #{$i};
+        }
+      }
+      grid-template-columns: repeat(auto-fill, minmax(0, auto));
+      grid-template-columns: 1fr 1fr;
+      -ms-grid-columns: 1fr 1fr;
+      -ms-grid-rows: 1fr;
+    }
+  
+    grid-template-columns: 1fr;
+    -ms-grid-columns: 100%;
+    -ms-grid-rows: 1fr;
+  }
+  

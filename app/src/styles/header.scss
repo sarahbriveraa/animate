@@ -1,0 +1,39 @@
+body {
+    font-family: $theme-font-primary;
+    font-weight: 300;
+    line-height: 1.5rem;
+}
+
+header {
+    min-height: 4rem;
+    margin-top: 1.2rem;
+    @include bp-tablet {
+        min-height: 7rem;
+        margin-top: 2rem;
+    }
+}
+
+.siteTitle {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainnNav {
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: $white;
+  }

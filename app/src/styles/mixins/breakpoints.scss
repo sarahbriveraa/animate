@@ -1,0 +1,11 @@
+@mixin bp-desktop() {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin bp-tablet() {
+    @media (min-width: 730px) {
+        @content;
+    }
+}

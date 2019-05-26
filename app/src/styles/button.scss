@@ -1,0 +1,26 @@
+.btn-mainnav {
+    padding: .9rem;
+    border: none;
+    color: $midnight;
+    font-size: .9rem;
+
+    @include bp-tablet {
+        font-size: 1.2rem;
+        padding: 1.3rem;
+    }
+
+    min-width: 5%;
+    text-decoration: none;
+    font-weight:500;
+
+
+
+    &:hover {
+        svg {
+            animation: .5s rotateUpLeft forwards;
+        }
+
+        color: $butternut;
+
+    }
+}
