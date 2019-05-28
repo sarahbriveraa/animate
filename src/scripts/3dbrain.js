@@ -48,14 +48,14 @@ scene = new THREE.Scene();
 //scene.background = envMap;
 light = new THREE.HemisphereLight(0xD7D1C1, 0x440035);
 light.position.set(0, 1, 0);
-var light2 = new THREE.DirectionalLight(0xffffff, 1, 100);
+var light2 = new THREE.DirectionalLight(0xffffff, .5, 100);
 light2.position.set(0, 1, 0); //default; light shining from top
 light2.castShadow = false;
 scene.add(light, light2);
 
 // model
 var loader = new GLTFLoader();
-loader.load('assets/models/brain2.gltf', function (brain) {
+loader.load('assets/models/brain4.gltf', function (brain) {
   brain.scene.traverse(function (child) {
     if (child.isMesh) {
       console.log(child.material);
@@ -94,8 +94,8 @@ renderer.domElement.addEventListener('mousedown', function (event) {
     lastclickedElement.material.color = lastclickedElement.initialColor;
   }
 
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  mouse.x = ( (event.clientX -renderer.domElement.offsetLeft) / renderer.domElement.width ) * 2 - 1;
+  mouse.y = -( (event.clientY - renderer.domElement.offsetTop) / renderer.domElement.height ) * 2 + 1;
   var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
 
   vector.unproject(camera);
@@ -105,16 +105,32 @@ renderer.domElement.addEventListener('mousedown', function (event) {
     vector.sub(camera.position).normalize()
   );
   var intersects = raycaster.intersectObjects(scene.children, true);
-
+  console.log("Intersects", intersects);
   if (intersects.length) {
 
     var clickedElement = intersects[0].object;
-    if (clickedElement.name == "temporal") {
+    switch(clickedElement.name)
+    {
+        case "temporal":
+        setColor(clickedElement);
+        document.querySelector(".info").classList.remove('hideMe');
+        document.querySelector(".info").classList.add('showMe');
+            break;
+    
+        case "frontal":
+          setColor(clickedElement);
+            break;
+    
+        default:
+            console.log("default");
+    
+    }
+/*     if (clickedElement.name == "temporal") {
       //clickedElement.material.color = {r:100, g:0, b:0};
       setColor(clickedElement);
       document.querySelector(".info").classList.remove('hideMe');
       document.querySelector(".info").classList.add('showMe');
-    }
+    } */
     return lastclickedElement = clickedElement;
   }
 }, false);
@@ -123,9 +139,9 @@ renderer.domElement.addEventListener('mousedown', function (event) {
 function setColor(mesh) {
   mesh.initialColor = mesh.material.color;
   mesh.material.color = {
-    r: 100,
-    g: 0,
-    b: 0
+    r: .8,
+    g: .1,
+    b: .3
   };
 }
 

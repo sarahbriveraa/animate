@@ -29,5 +29,5 @@ app.use('/', routes);
 
 // Serve the files on port 9000.
 app.listen(9000, function () {
-  console.log('Example app listening on port 9000!\n');
+  console.log('app listening on port 9000!\n');
 });

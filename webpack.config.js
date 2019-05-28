@@ -22,11 +22,11 @@ const {
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.js'
+        app: path.join(sourceDir, '/index.js')
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: buildDir
     },
 
     
@@ -61,9 +61,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Generic Head Title",
             // the template you want to use
-            template: path.join(__dirname, "src", "views", "index.hbs"),
+            template: path.join(sourceDir, "views", "index.hbs"),
             // the output file name
-            filename: path.join(__dirname, "dist", "index.html"),
+            filename: path.join(buildDir, "index.html"),
             inject: "index"
           }),
           new HandlebarsPlugin({
@@ -91,7 +91,7 @@ module.exports = {
     ],
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(buildDir),
         publicPath: '/'
     }
 };

@@ -1,8 +1,8 @@
 .h1 {
-    font-family:$theme-font-secondary;
+    font-family:$theme-font-primary;
     font-size: 2rem;
     margin-bottom:1rem;
-    
+    line-height: 2.2rem;
     font-weight: 700;
     @include bp-tablet {
         font-size: 4rem;

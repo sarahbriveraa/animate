@@ -10,13 +10,13 @@ import solid from '@fortawesome/fontawesome-free-solid';
 import brands from '@fortawesome/fontawesome-free-brands';
 
 
-import './scripts/stickyheader.js';
-import './scripts/chart-customlabels.js';
-import './scripts/3dbrain.js';
+import './scripts/stickyheader';
+import './scripts/chart-customlabels';
+import './scripts/3dbrain';
 
 fontawesome.library.add(regular)
 fontawesome.library.add(solid) 
 fontawesome.library.add(brands)
  
 
-import './scripts/stickyheader.js';
+import './scripts/stickyheader';

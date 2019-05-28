@@ -17,17 +17,7 @@ var Samples = global.Samples || (global.Samples = {});
 	}
 
 	Samples.COLORS = [
-		'#FF3784',
-		'#36A2EB',
-		'#4BC0C0',
-		'#F77825',
-		'#9966FF',
-		'#00A8C6',
-		'#379F7A',
-		'#CC2738',
-		'#8B628A',
-		'#8FBE00',
-		'#606060'
+		'#033764'
 	];
 
 	// Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
@@ -138,7 +128,7 @@ var Samples = global.Samples || (global.Samples = {});
 //init
 var canvas = document.getElementById("myChart");
 var DATA_COUNT = 6;
-var labels = ['SASS/Less', 'JavaScript ES6', 'React', 'Angular 6', 'BackboneJS', 'NodeJS'];
+var labels = ['Apples', 'Oranges', 'Grapes', 'Peaches', 'Strawberries', 'Pears'];
 Samples.srand(0);
 
 Chart.helpers.merge(Chart.defaults.global, {
@@ -220,57 +210,3 @@ function randomize() {
 
   chart.update();
 }
-
-
-
-/* Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
-  color: '#000000',
-  font: {
-    size: 20}
-});
-
-var canvas = document.getElementById("myChart");
-var myChart = new Chart(canvas, {
-  type: 'doughnut',
-  responsive: 'true',
-  data: {
-    labels: ["SASS/Less", "JavaScript ES6", "React", "Angular 6", "BackboneJS", "NodeJS"],
-    datasets: [{
-      label: 'Experience',
-      data: [100, 90, 80, 60, 50, 30],
-      backgroundColor: [
-        '#6c468e',
-        '#e16479',
-        '#e09535',
-        '#10b798',
-        '#0086ae',
-        '#0078E0'
-      ]
-    }]
-  },
-  options: {
-    legend: {
-      display: false,
-      position: 'bottom'
-    },
-    layout: {
-      padding: {
-        left: 50,
-        right: 0,
-        top: 0,
-        bottom: 0
-      }
-    },
-    title: {
-      display: false,
-      text: 'Code Experience'
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true
-    },
-    maintainAspectRatio: false,
-  }
-});
- */
-
