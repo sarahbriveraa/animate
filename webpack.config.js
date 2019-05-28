@@ -12,7 +12,7 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 });
 
 const sourceDir = path.join(__dirname, 'src');
-const buildDir = path.join(__dirname, 'dist');
+const buildDir = path.join(__dirname, 'docs');
 
 const {
     makeDataReplacements,
