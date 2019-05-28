@@ -223,9 +223,9 @@
         {
             "bufferView" : 15,
             "componentType" : 5123,
-            "count" : 2139,
+            "count" : 4278,
             "max" : [
-                386
+                744
             ],
             "min" : [
                 0
@@ -235,7 +235,7 @@
         {
             "bufferView" : 16,
             "componentType" : 5126,
-            "count" : 387,
+            "count" : 745,
             "max" : [
                 0.7298481464385986,
                 -0.009260540828108788,
@@ -244,32 +244,32 @@
             "min" : [
                 -0.03542441129684448,
                 -0.4164406657218933,
-                -0.001802835613489151
+                -0.5211092233657837
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 17,
             "componentType" : 5126,
-            "count" : 387,
+            "count" : 745,
             "max" : [
-                0.9929196834564209,
+                0.99969482421875,
                 0.48738059401512146,
                 0.9954527616500854
             ],
             "min" : [
-                -0.9917905330657959,
+                -0.999359130859375,
                 -0.9988097548484802,
-                -0.4926908016204834
+                -0.9954527616500854
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 18,
             "componentType" : 5123,
-            "count" : 273,
+            "count" : 546,
             "max" : [
-                57
+                108
             ],
             "min" : [
                 0
@@ -279,7 +279,7 @@
         {
             "bufferView" : 19,
             "componentType" : 5126,
-            "count" : 58,
+            "count" : 109,
             "max" : [
                 0.4316278398036957,
                 -0.0837591290473938,
@@ -288,23 +288,23 @@
             "min" : [
                 -0.0632912889122963,
                 -0.7386396527290344,
-                -0.008621158078312874
+                -0.2558507025241852
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 20,
             "componentType" : 5126,
-            "count" : 58,
+            "count" : 109,
             "max" : [
                 0.9156773686408997,
                 0.23490096628665924,
                 0.9851984977722168
             ],
             "min" : [
-                -0.9619739651679993,
-                -0.9885860681533813,
-                0.12189092487096786
+                -0.99932861328125,
+                -0.9960020780563354,
+                -0.9851984977722168
             ],
             "type" : "VEC3"
         }
@@ -406,44 +406,44 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 4278,
+            "byteLength" : 8556,
             "byteOffset" : 293088,
             "target" : 34963
         },
         {
             "buffer" : 0,
-            "byteLength" : 4644,
-            "byteOffset" : 297368,
+            "byteLength" : 8940,
+            "byteOffset" : 301644,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 4644,
-            "byteOffset" : 302012,
+            "byteLength" : 8940,
+            "byteOffset" : 310584,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 546,
-            "byteOffset" : 306656,
+            "byteLength" : 1092,
+            "byteOffset" : 319524,
             "target" : 34963
         },
         {
             "buffer" : 0,
-            "byteLength" : 696,
-            "byteOffset" : 307204,
+            "byteLength" : 1308,
+            "byteOffset" : 320616,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 696,
-            "byteOffset" : 307900,
+            "byteLength" : 1308,
+            "byteOffset" : 321924,
             "target" : 34962
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 308596,
+            "byteLength" : 323232,
             "uri" : "brain4.bin"
         }
     ],
