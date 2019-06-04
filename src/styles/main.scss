@@ -1,21 +1,23 @@
 
 @import './mixins/breakpoints';
-@import 'reset';
-@import 'colors';
-@import 'fonts';
-@import 'header';
-@import 'regions';
-@import 'typography';
-@import 'animations';
-@import 'button';
-@import 'texteffects';
-@import 'button';
-@import 'icons';
-@import 'mixins/breakpoints';
-@import 'layouts/maxwidth';
-@import 'layouts/twocolumn';
-@import 'layouts/onecolumn';
-@import 'ally';
+@import './utility/reset';
+@import './settings/colors';
+@import './settings/fonts';
+@import './components/header';
+@import './layouts/regions';
+@import './components/typography';
+@import './utility/animations';
+@import './components/structure';
+@import './components/buttons';
+@import './components/callouts';
+@import './components/texteffects';
+@import './components/icons';
+@import './components/3dbrain';
+@import './mixins/breakpoints';
+@import './layouts/maxwidth';
+@import './layouts/twocolumn';
+@import './layouts/onecolumn';
+@import './utility/ally';
 
 
 

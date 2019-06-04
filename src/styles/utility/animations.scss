@@ -1,0 +1,54 @@
+.downIn {
+  animation: 1s downIn forwards;
+
+}
+
+
+@keyframes downIn {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+
+  50% {
+    top: 8px;
+    opacity: 50%;
+  }
+
+  100% {
+    top: 0;
+    opacity: 100%;
+  }
+}
+
+@keyframes rotateUpLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: rotate3d(0, 0, 1, -19deg);
+    
+  }
+}
+
+@keyframes hideshow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.hide-me {
+  opacity: 0;
+  padding:0;
+  height:0;
+  width:0;
+}
+.show-me {
+  animation: 1s hideshow forwards;
+}
+
