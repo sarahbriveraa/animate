@@ -5,10 +5,14 @@ import './scripts/sample-data';
 
 
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import fontawesome from '@fortawesome/fontawesome';
-import regular from '@fortawesome/fontawesome-free-regular';
-import solid from '@fortawesome/fontawesome-free-solid';
-import brands from '@fortawesome/fontawesome-free-brands';
+
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faBrain, faInfoCircle, faTree, faChartLine} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faFileCode, faAddressCard, faLightbulb} from '@fortawesome/free-regular-svg-icons';
+
+library.add(faBrain, faPaperPlane, faFileCode, faAddressCard, faLightbulb, faTree, faInfoCircle, faChartLine);
+
+dom.watch();
 
 
 import './scripts/stickyheader';
@@ -16,10 +20,5 @@ import './scripts/chart-bar';
 import './scripts/chart-doughnut';
 import './scripts/chart-line';
 import './scripts/3dbrain';
-
-fontawesome.library.add(regular)
-fontawesome.library.add(solid) 
-fontawesome.library.add(brands)
- 
 
 import './scripts/stickyheader';
