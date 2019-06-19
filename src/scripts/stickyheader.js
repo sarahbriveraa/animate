@@ -17,7 +17,7 @@ var stickyHeader = (function () {
 
     function scrollPage() {
         var sy = scrollY();
-        var header = document.querySelector('.stickyHeader');
+        var header = document.querySelector('.sticky-header');
         if (sy >= changeHeaderOn) {
             //Add stickyness
             header.classList.add('sticky', 'downIn');

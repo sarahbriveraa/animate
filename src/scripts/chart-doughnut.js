@@ -35,7 +35,7 @@ var chart2 = new Chart('myChart2', {
 				font: function (context) {
 					var w = context.chart.width;
 					return {
-						size: w < 512 ? 14 : 24,
+						size: w < 512 ? 10 : 14,
 						weight: 'bold'
 					}
 				},

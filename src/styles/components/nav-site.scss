@@ -1,0 +1,23 @@
+.nav-site-btn {
+    border: none;
+    color: $midnight;
+    min-width: 5%;
+    text-decoration: none;
+    font-weight:500;
+    font-size: 1.1rem;
+    padding: .9rem;
+    @include bp-tablet {
+        font-size: 1.2rem;
+        padding: 1.3rem;
+    }
+    svg {
+        margin: 0 .6rem 0 0;
+    }
+
+    &:hover {
+        color: $butternut;
+        svg {
+            animation: .5s rotateUpLeft forwards;
+        }
+    }
+}

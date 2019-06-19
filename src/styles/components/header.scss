@@ -1,15 +1,18 @@
 
 
-.siteTitle {
+.site-title {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 0 1rem;
+    grid-column: 1 / 6;
+    @include bp-tablet {
+        grid-column: 1 / 11;
+    }
 }
 
-.mainnNav {
+.site-nav {
     min-height: 44px;
     display: flex;
     justify-content: center;
@@ -24,4 +27,5 @@
     right: 0;
     z-index: 1000;
     background-color: $white;
+
   }

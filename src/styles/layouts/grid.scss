@@ -1,0 +1,31 @@
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-flow: column;  
+    grid-auto-columns: fit-content; 
+    grid-row: auto;
+    grid-gap: 1rem;
+    padding: 0 5%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  @include bp-tablet {
+    .grid-wrapper {
+        grid-template-columns: repeat(10,1fr);
+      }
+}
+
+
+//layouts
+.col1-5 {
+    grid-column: 1 / 6;
+}
+
+.col5-10 {
+    grid-column: 1 / 6;
+   
+    @include bp-tablet {
+        grid-column: 6 / 11;
+    }
+}
+

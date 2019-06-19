@@ -1,26 +1,12 @@
-.btn-mainnav {
-    padding: .9rem;
+button {
     border: none;
-    color: $midnight;
-    font-size: 1.1rem;
-
-    @include bp-tablet {
-        font-size: 1.2rem;
-        padding: 1.3rem;
-    }
-
-    min-width: 5%;
-    text-decoration: none;
-    font-weight:500;
-
-
-
-    &:hover {
-        svg {
-            animation: .5s rotateUpLeft forwards;
-        }
-
-        color: $butternut;
-
-    }
+    //background: #0086ae;
+    box-shadow: none;
+    padding: .5rem;
+    font-size: 1rem;
+    color: #ffffff;
+    display: block;
+    text-align: left;
+    margin-bottom: 1rem;
+    //"#FBA22D", "#10b798", "#e16479", "#6c468e", "#0086ae", "#005198"
 }

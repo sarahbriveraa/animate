@@ -37,6 +37,7 @@ var chart1 = new Chart('myChart', {
 		}]
 	},
 	options: {
+		maintainAspectRatio: false,
 		plugins: {
 			datalabels: {
 				align: 'end',
