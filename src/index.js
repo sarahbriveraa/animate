@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import "./styles/main.scss";
-import Chart from 'chart.js';
+
+//import Chart from 'chart.js';
 import './scripts/sample-data';
-
-
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
@@ -22,3 +21,6 @@ import './scripts/chart-line';
 import './scripts/3dbrain';
 
 import './scripts/stickyheader';
+import './scripts/figma-api-play';
+
+

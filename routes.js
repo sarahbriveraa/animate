@@ -5,7 +5,9 @@ const path = require('path');
  router.get('/', function (req, res, next) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
-
+router.get('/about', function (req, res, next) {
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
+}); 
 router.get('/fun', function (req, res, next) {
     res.sendFile(path.join(__dirname + '/dist/fun.html'));
 }); 

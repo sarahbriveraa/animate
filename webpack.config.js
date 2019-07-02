@@ -74,19 +74,7 @@ module.exports = {
             output: path.join(buildDir, "[name].html"),
             partials: [
                 path.join(sourceDir, "views", "*", "*.hbs")
-            ],
-            // hooks
-            onBeforeSetup: Handlebars => {
-                return registerHandlersHelpers(Handlebars);
-            },
-            onBeforeAddPartials: function (Handlebars, partialsMap) {},
-            onBeforeCompile: function (Handlebars, templateContent) {},
-            onBeforeRender: (Handlebars, data) => {
-                return makeDataReplacements(data);
-            },
-            onBeforeSave: function (Handlebars, resultHtml, filename) {},
-            onDone: function (Handlebars, filename) {}
-
+            ]
         })
     ],
     output: {

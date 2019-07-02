@@ -1,5 +1,5 @@
 body {
-    font-family: $theme-font-primary;
+    font-family: $font-primary;
     font-weight: 300;
     line-height: 1.5rem;
 }
@@ -10,5 +10,17 @@ header {
     @include bp-tablet {
         min-height: 7rem;
         margin-top: 2rem;
+    }
+}
+
+.site-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-column: 1 / 6;
+    @include bp-tablet {
+        grid-column: 1 / 11;
     }
 }

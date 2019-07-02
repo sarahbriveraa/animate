@@ -7,6 +7,7 @@ var container, controls, camera, scene, light, renderer, lastClickedElement, las
   x: 0,
   y: 0
 };
+
 container = document.querySelector(".brain3d");
 
 const hover = [.8, .2, .8]
@@ -16,7 +17,6 @@ const initialColor = [.9, .6, .525]
 if (container) {
   renderer = init();
 }
-
 
 function init() {
   //renderer
@@ -90,6 +90,7 @@ function init() {
 
   // Hover highlight
   document.addEventListener('mousemove', onDocumentMouseMove, false);
+
   //Selected hightlight
   document.addEventListener('click', onDocumentClick, false);
 
@@ -144,6 +145,7 @@ function onDocumentMouseMove() {
 
 function onDocumentClick(e) {
   if (e.target.type === "submit") {
+    console.log("e.target", e.target);
     switch (e.target.className) {
       case "temporal":
         
