@@ -1,4 +1,4 @@
-.brain3d {
+.brain-canvas {
     width: 100%;
     height:300px;
     vertical-align: text-top;
@@ -8,7 +8,7 @@
     border: 3px solid $midnight;
 }
 
-#nav-brain {
+#brain-nav {
     vertical-align: text-top;
     display: inline-block;
 
@@ -23,5 +23,8 @@
         &:hover{
             background-color: $butternut;
         }
+    }
+    .svg-inline--fa {
+        pointer-events: none;
     }
 }

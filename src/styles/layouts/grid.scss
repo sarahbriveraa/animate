@@ -17,11 +17,14 @@
 
 
 //layouts
-.col1-5 {
+.col1-11 {
+    grid-column: 1 / 11;
+}
+.col1-6 {
     grid-column: 1 / 6;
 }
 
-.col5-10 {
+.col5-11 {
     grid-column: 1 / 6;
    
     @include bp-tablet {

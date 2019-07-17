@@ -4,6 +4,7 @@
     margin-bottom:1rem;
     line-height: 2.2rem;
     font-weight: 700;
+    color: $cement;
     @include bp-tablet {
         font-size: 4rem;
         margin-bottom:1rem;
@@ -14,6 +15,7 @@
 .h2 {
     font-size: .9rem;
     margin-bottom:.3rem;
+    color: $cement;
     @include bp-tablet {
         font-size: 1.1rem;
         margin-bottom:.3rem;
@@ -24,6 +26,7 @@
     font-size: 1rem;
     margin-bottom:.5rem;
     font-weight: 700;
+    color: $cement;
     @include bp-tablet {
         font-size: 1.2rem;
         margin-bottom:1rem;
@@ -33,6 +36,7 @@
     font-size: 1rem;
     margin-bottom:.4rem;
     font-weight: 900;
+    color: $cement;
     @include bp-tablet {
         font-size: 1rem;
         margin-bottom:.4rem;

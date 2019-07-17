@@ -1,28 +1,31 @@
+/* TODO: Find a way to search for a mesh in a scene by the name on the mesh to use to connect the nav buttons to highlight the mesh*/
+
 import * as THREE from 'three';
 import GLTFLoader from 'three-gltf-loader';
 import OrbitControls from 'three-orbitcontrols';
 
 //Global Variables
-var container, controls, camera, scene, light, renderer, lastClickedElement, lastMouseoverElement, mouse = {
+var brainCanvas, controls, camera, scene, light, renderer, lastClickedElement, brainNav, lastMouseoverElement, mouse = {
   x: 0,
   y: 0
 };
 
-container = document.querySelector(".brain3d");
+brainCanvas = document.querySelector(".brain-canvas");
+brainNav = document.querySelector("#brain-nav");
 
-const hover = [.8, .2, .8]
-const selected = [.8, .1, .3]
+const hoverColor = [.8, .2, .8]
+const selectedColor = [.8, .1, .3]
 const initialColor = [.9, .6, .525]
 
-if (container) {
+if (brainCanvas) {
   renderer = init();
 }
 
 function init() {
   //renderer
- 
+
   var renderer = new THREE.WebGLRenderer({
-    canvas: container,
+    canvas: brainCanvas,
     antialias: true,
     alpha: true
   });
@@ -36,7 +39,7 @@ function init() {
 
 
   //controls
-  controls = new OrbitControls(camera, container);
+  controls = new OrbitControls(camera, brainCanvas);
   controls.target.set(0, .2, -0.2);
   controls.minDistance = 5;
   controls.maxDistance = 18;
@@ -89,10 +92,11 @@ function init() {
   scene.background = null;
 
   // Hover highlight
-  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  brainCanvas.addEventListener('mousemove', onDocumentMouseMove, false);
 
-  //Selected hightlight
-  document.addEventListener('click', onDocumentClick, false);
+  //click reveal
+  brainNav.addEventListener('click', onBrainNavClick, false);
+  brainCanvas.addEventListener('click', onBrainCanvasClick, false);
 
   return renderer;
 }
@@ -121,7 +125,7 @@ function onDocumentMouseMove() {
   //Reseting the last mouse over state
   if (lastMouseoverElement) {
     if (lastMouseoverElement.clicked == true) {
-      setColor(lastMouseoverElement, selected);
+      setColor(lastMouseoverElement, selectedColor);
     } else {
       setColor(lastMouseoverElement, initialColor);
     }
@@ -135,7 +139,7 @@ function onDocumentMouseMove() {
 
     //Setting the hover color if it's not already clicked
     if (mouseoverElement.clicked != true) {
-      setColor(mouseoverElement, hover);
+      setColor(mouseoverElement, hoverColor);
     }
 
     //Saving the last mouseover element to reference later
@@ -143,145 +147,113 @@ function onDocumentMouseMove() {
   }
 }
 
-function onDocumentClick(e) {
-  if (e.target.type === "submit") {
-    console.log("e.target", e.target);
-    switch (e.target.className) {
-      case "temporal":
-        
-        document.querySelector(".info-temporal").classList.remove('hide-me');
-        document.querySelector(".info-temporal").classList.add('show-me');
-        break;
+function onBrainCanvasClick(e) {
 
-      case "frontal":
-        
-        document.querySelector(".info-frontal").classList.remove('hide-me');
-        document.querySelector(".info-frontal").classList.add('show-me');
-        break;
+  //Reseting the last clicked element
+  if (lastClickedElement) {
+    lastClickedElement.clicked = false;
+    setColor(lastClickedElement, initialColor);
+  }
 
-      case "occipital":
-        
-        document.querySelector(".info-occipital").classList.remove('hide-me');
-        document.querySelector(".info-occipital").classList.add('show-me');
-        break;
+  //Finding the clicked elements
+  var intersects = collider(renderer);
 
-      case "parietal":
-        
-        document.querySelector(".info-parietal").classList.remove('hide-me');
-        document.querySelector(".info-parietal").classList.add('show-me');
-        break;
+  if (intersects.length) {
+    //Saving the clicked element
+    var clickedElement = intersects[0].object;
 
-      case "cerebellum":
-        
-        document.querySelector(".info-cerebellum").classList.remove('hide-me');
-        document.querySelector(".info-cerebellum").classList.add('show-me');
-        break;
+    //Seting a clicked attribute to reference later
+    clickedElement.clicked = true;
 
-      case "brainstem":
-        
-        document.querySelector(".info-brainstem").classList.remove('hide-me');
-        document.querySelector(".info-brainstem").classList.add('show-me');
-        break;
+    //Hiding the last clicked elements info
+    hideLastClicked(lastClickedElement);
 
-      default:
-        console.log("You clicked on the brain, but there isn't any info for that region.");
-
-    }
-
-    return;
+    //Showing the current clicked elements info
+    brainInfoToggle(clickedElement, selectedColor)
+    console.log("lastClickedElement Canvas", lastClickedElement);
+    //saving the last clicked element to reference later
+    return lastClickedElement = clickedElement;
+   
   } else {
-    //Reseting the last clicked element
-    if (lastClickedElement) {
-      lastClickedElement.clicked = false;
-      setColor(lastClickedElement, initialColor);
+    //reseting the last clicked element if you click outside of the model
+    hideLastClicked(lastClickedElement);
+  }
+}
+
+function onBrainNavClick(e) {
+  brainInfoToggle(e);
+  //hideLastClicked(lastClickedElement);
+  console.log("lastClickedElement NAV", e.target.className);
+  lastClickedElement = e.target.className;
+}
+
+function hideLastClicked(e) {
+  if (e) {
+    var lastClickedElementClass = '.info-' + e.name;
+    document.querySelector(lastClickedElementClass).classList.remove('show-me');
+    document.querySelector(lastClickedElementClass).classList.add('hide-me');
+    if (e) {
+      setColor(e, initialColor);
     }
+  }
+}
 
-    //Finding the clicked elements
-    var intersects = collider(renderer);
+function brainInfoToggle(e, selectedColor) {
 
-    if (intersects.length) {
-      //Saving the clicked element
-      var clickedElement = intersects[0].object;
+  switch (e.name || e.target.className) {
+    case "temporal":
+      setColor(e, selectedColor);
+      document.querySelector(".info-temporal").classList.remove('hide-me');
+      document.querySelector(".info-temporal").classList.add('show-me');
+      break;
 
-      //Seting a clicked attribute to reference later
-      clickedElement.clicked = true;
+    case "frontal":
+      setColor(e, selectedColor);
+      document.querySelector(".info-frontal").classList.remove('hide-me');
+      document.querySelector(".info-frontal").classList.add('show-me');
+      break;
 
-      //Hiding the last clicked elements info
-      if (lastClickedElement) {
-        var lastClickedElementClass = '.info-' + lastClickedElement.name;
-        document.querySelector(lastClickedElementClass).classList.remove('show-me');
-        document.querySelector(lastClickedElementClass).classList.add('hide-me');
-      }
+    case "occipital":
+      setColor(e, selectedColor);
+      document.querySelector(".info-occipital").classList.remove('hide-me');
+      document.querySelector(".info-occipital").classList.add('show-me');
+      break;
 
-      //Showing the current clicked elements info
-      switch (clickedElement.name) {
-        case "temporal":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-temporal").classList.remove('hide-me');
-          document.querySelector(".info-temporal").classList.add('show-me');
-          break;
+    case "parietal":
+      setColor(e, selectedColor);
+      document.querySelector(".info-parietal").classList.remove('hide-me');
+      document.querySelector(".info-parietal").classList.add('show-me');
+      break;
 
-        case "frontal":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-frontal").classList.remove('hide-me');
-          document.querySelector(".info-frontal").classList.add('show-me');
-          break;
+    case "cerebellum":
+      setColor(e, selectedColor);
+      document.querySelector(".info-cerebellum").classList.remove('hide-me');
+      document.querySelector(".info-cerebellum").classList.add('show-me');
+      break;
 
-        case "occipital":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-occipital").classList.remove('hide-me');
-          document.querySelector(".info-occipital").classList.add('show-me');
-          break;
+    case "brainstem":
+      setColor(e, selectedColor);
+      document.querySelector(".info-brainstem").classList.remove('hide-me');
+      document.querySelector(".info-brainstem").classList.add('show-me');
+      break;
 
-        case "parietal":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-parietal").classList.remove('hide-me');
-          document.querySelector(".info-parietal").classList.add('show-me');
-          break;
+    default:
+      console.log("You clicked on the brain, but there isn't any info for that region.");
 
-        case "cerebellum":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-cerebellum").classList.remove('hide-me');
-          document.querySelector(".info-cerebellum").classList.add('show-me');
-          break;
-
-        case "brainstem":
-          setColor(clickedElement, selected);
-          document.querySelector(".info-brainstem").classList.remove('hide-me');
-          document.querySelector(".info-brainstem").classList.add('show-me');
-          break;
-
-        default:
-          console.log("You clicked on the brain, but there isn't any info for that region.");
-
-      }
-
-      //Saving the last clicked element to reference later
-      return lastClickedElement = clickedElement;
-    } else {
-      //reseting the last clicked element if you click outside of the model
-      if (lastClickedElement) {
-        var lastClickedElementClass = '.info-' + lastClickedElement.name;
-        document.querySelector(lastClickedElementClass).classList.remove('show-me');
-        document.querySelector(lastClickedElementClass).classList.add('hide-me');
-        if (lastClickedElement) {
-          setColor(lastClickedElement, initialColor);
-        }
-      }
-    }
   }
 }
 
 //Used for highlighting a section of the mesh
 function setColor(mesh, color) {
-  mesh.material.color = {
-    r: color[0],
-    g: color[1],
-    b: color[2]
-  };
+  if (color != undefined)
+    mesh.material.color = {
+      r: color[0],
+      g: color[1],
+      b: color[2]
+    };
 }
 
-//Resizing the rendered area based on the size of the container 
+//Resizing the rendered area based on the size of the brainCanvas 
 function resizeCanvasToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
