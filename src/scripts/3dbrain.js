@@ -1,5 +1,5 @@
 /* TODO: Find a way to search for a mesh in a scene by the name on the mesh to use to connect the nav buttons to highlight the mesh*/
-
+//scene.getObjectByName( "objectName" );
 import * as THREE from 'three';
 import GLTFLoader from 'three-gltf-loader';
 import OrbitControls from 'three-orbitcontrols';
@@ -148,7 +148,7 @@ function onDocumentMouseMove() {
 }
 
 function onBrainCanvasClick(e) {
-
+  console.log("onBrainCanvasClick", e);
   //Reseting the last clicked element
   if (lastClickedElement) {
     lastClickedElement.clicked = false;
@@ -166,14 +166,14 @@ function onBrainCanvasClick(e) {
     clickedElement.clicked = true;
 
     //Hiding the last clicked elements info
-    hideLastClicked(lastClickedElement);
+      hideLastClicked(lastClickedElement);
 
     //Showing the current clicked elements info
     brainInfoToggle(clickedElement, selectedColor)
     console.log("lastClickedElement Canvas", lastClickedElement);
     //saving the last clicked element to reference later
     return lastClickedElement = clickedElement;
-   
+
   } else {
     //reseting the last clicked element if you click outside of the model
     hideLastClicked(lastClickedElement);
@@ -181,21 +181,28 @@ function onBrainCanvasClick(e) {
 }
 
 function onBrainNavClick(e) {
-  brainInfoToggle(e);
-  //hideLastClicked(lastClickedElement);
-  console.log("lastClickedElement NAV", e.target.className);
-  lastClickedElement = e.target.className;
+  const tempstring = '{"name": "' + e.target.className +'" , "clicked":true, }';
+  clickedElement = JSON.parse(tempstring);
+
+  ///TODO LAST TOUCHED LINES
+  brainInfoToggle(clickedElement);
+  hideLastClicked(clickedElement);
+
 }
 
 function hideLastClicked(e) {
   if (e) {
+  console.log("hideLastClicked", e);
+  if (e.type === "Mesh") {
+    console.log("it's a mesh!", e);
     var lastClickedElementClass = '.info-' + e.name;
     document.querySelector(lastClickedElementClass).classList.remove('show-me');
     document.querySelector(lastClickedElementClass).classList.add('hide-me');
-    if (e) {
       setColor(e, initialColor);
-    }
+  } else {
+    console.log("it's NOT a mesh!", e);
   }
+}
 }
 
 function brainInfoToggle(e, selectedColor) {
