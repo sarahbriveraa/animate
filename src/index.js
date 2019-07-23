@@ -21,6 +21,6 @@ import './scripts/chart-line';
 import './scripts/3dbrain';
 
 import './scripts/stickyheader';
-import './scripts/figma-api-play';
+//import './scripts/figma-api-play';
 
 
