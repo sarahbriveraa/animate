@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en" dir="ltr">
 <head> 
@@ -5,54 +6,132 @@
     <title>Animation is Fun!</title>
     <link href="https://fonts.googleapis.com/css?family=KoHo|Lato:300,700" rel="stylesheet">
     <link rel="stylesheet" href="./app.css">
-</head><body class="">
-    <header class="siteTitle">
+</head>
+<body class="grid-wrapper ">    <header class="site-title">
         <h1 class="h1"><strong>Creativity</strong> is <span class="">contagious</span>, pass it on.</h2>
         
-        <nav class="mainnNav stickyHeader">
-            <a href="/" class="btn-mainnav"><i class="far fa-address-card"></i>About</a>
-            <a href="work" class="btn-mainnav"><i class="far fa-file-code"></i>Work</a>
-            <a href="fun" class="btn-mainnav"><i class="far fa-paper-plane"></i>Fun</a>
+        <nav class="site-nav sticky-header">
+            <a href="about" class="nav-site-btn"><i class="far fa-address-card"></i>About</a>
+            <a href="work" class="nav-site-btn"><i class="far fa-file-code"></i>Work</a>
+            <a href="fun" class="nav-site-btn"><i class="far fa-paper-plane"></i>Fun</a>
         </nav>
     </header>
-    <section class="region-hero">
-        <div class="maxwidth region-padding">
-            <div class="twocolumn">
-                <div class="region region1">
-                    <canvas class="mycanvas" aria-hidden="true"></canvas>
-                    <div class="region-padding info info-temporal hide-me">
-                        <p><i class="fas fa-info-circle"></i>The temporal lobe consists of structures that are vital for
-                            declarative or long-term memory.</span></p>
-                    </div>
-                    <div class="region-padding info info-frontal hide-me">
-                        <p><i class="fas fa-info-circle"></i>The frontal lobe consists of structures that are vital for
-                            declarative or long-term memory.</span></p>
-                    </div>
-                </div>
-                <div class="region region2">
-                    <div class="region region1">
-                        <h3 class="h3"><i class="far fa-lightbulb"></i>What's on your mind?</h3>
-                        <p>This brain is constructed with Blender and rendered with Three.js. The model was exported
-                            with
-                            the glft exporter and all the lights, camera, and materials are setup with three.js. It
-                            uses a
-                            cube map for reflections and a directional light for the highlights. There's an ambient
-                            light
-                            for the fill and secondary colors.</p>
-                        <p>My purpose in this peice was to revisit my roots in 3D animation and see what I could create
-                            utilizing WebGL.</p>
-                        <section class="callout">
-                            <h4 class="h4"><i class="fas fa-info-circle"></i>Tools Used:</h4>
-                            <ul>
-                                <li>Blender</li>
-                                <li>Three.js</li>
-                                <li>Javascript</li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-            </div>
+    <div class="col1-6 brain">
+        <nav id="brain-nav">
+            <button class="temporal"><i class="fas fa-memory"></i><span class="sr-text">Language</span></button>
+            <button class="frontal"><i class="fas fa-language"></i><span class="sr-text">Language</span></button>
+            <button class="occipital"><i class="fas fa-eye"></i><span class="sr-text">Eye</span></button>
+            <button class="parietal"><i class="fas fa-hands-helping"></i><span class="sr-text">Touch</span></button>
+            <button class="cerebellum"><i class="fas fa-balance-scale"></i><span class="sr-text">Language</span></button>
+            <button class="brainstem"><i class="fas fa-train"></i><span class="sr-text">Language</span></button>
+        </nav>
+        <canvas class="brain-canvas" aria-hidden="true"></canvas>
+        <div class="region-padding info info-temporal hide-me">
+            <p><i class="fas fa-info-circle"></i>The temporal lobe is involved in processing sensory input into derived
+                meanings for the appropriate retention of visual memory, language comprehension, and emotion association.
+            </p>
         </div>
-    </section></body>
+        <div class="region-padding info info-frontal hide-me">
+            <p><i class="fas fa-info-circle"></i>The frontal lobe consists of structures that are vital for
+                declarative or long-term memory.</p>
+        </div>
+        <div class="region-padding info info-occipital hide-me">
+            <p><i class="fas fa-info-circle"></i>The occipital lobe consists of structures that are vital for
+                declarative or long-term memory.</p>
+        </div>
+        <div class="region-padding info info-parietal hide-me">
+            <p><i class="fas fa-info-circle"></i>The parietal lobe is one of the four major lobes of the cerebral cortex
+                in the brain of mammals. The parietal lobe is positioned above the temporal lobe and behind the frontal lobe
+                and central sulcus.</p>
+            <p>The parietal lobe integrates sensory information among various modalities, including spatial sense and
+                navigation
+                (proprioception), the main sensory receptive area for the sense of touch in the somatosensory cortex which
+                is just
+                posterior to the central sulcus in the postcentral gyrus, and the dorsal stream of the visual system. The
+                major
+                sensory inputs from the skin (touch, temperature, and pain receptors), relay through the thalamus to the
+                parietal lobe.</p>
+            <p>Several areas of the parietal lobe are important in language processing. The somatosensory cortex can be
+                illustrated
+                as a distorted figure – the cortical homunculus (Latin: "little man") in which the body parts are rendered
+                according
+                to how much of the somatosensory cortex is devoted to them. The superior parietal lobule and inferior
+                parietal lobule
+                are the primary areas of body or spatial awareness. A lesion commonly in the right superior or inferior
+                parietal lobule
+                leads to hemineglect.</p>
+        </div>
+        <div class="region-padding info info-cerebellum hide-me">
+            <p><i class="fas fa-info-circle"></i>The cerebellum consists of structures that are vital for
+                declarative or long-term memory.</p>
+        </div>
+        <div class="region-padding info info-brainstem hide-me">
+            <p><i class="fas fa-info-circle"></i>The brainstem (or brain stem) is the posterior part of the brain,
+                continuous
+                with the spinal cord. In the human brain the brainstem includes the midbrain, and the pons and medulla
+                oblongata of
+                the hindbrain. Sometimes the diencephalon, the caudal part of the forebrain, is included.</p>
+            <p>The brainstem provides the main motor and sensory nerve supply to the face and neck via the cranial nerves.
+                Of
+                the thirteen pairs of cranial nerves, ten pairs (or twelve, if the diencephalon is included in the
+                brainstem)
+                come from the brainstem. The brainstem is an extremely important part of the brain as the nerve connections
+                of
+                the motor and sensory systems from the main part of the brain to the rest of the body pass through the
+                brainstem.
+                This includes the corticospinal tract (motor), the dorsal column-medial lemniscus pathway (fine touch,
+                vibration
+                sensation, and proprioception), and the spinothalamic tract (pain, temperature, itch, and crude touch).</p>
+            <p>The brainstem also plays an important role in the regulation of cardiac and respiratory function. It also
+                regulates the central nervous system, and is pivotal in maintaining consciousness and regulating the sleep
+                cycle.
+                The brainstem has many basic functions including heart rate, breathing, sleeping, and eating.</p>
+        </div>
+    </div>
+    <div class="col5-11">
+    
+        <h3 class="h3"><i class="far fa-lightbulb"></i>What's on your mind?</h3>
+        <p>This brain is constructed with Blender and rendered with Three.js. The model was exported
+            with
+            the glft exporter and all the lights, camera, and materials are setup with three.js. It
+            uses a
+            cube map for reflections and a directional light for the highlights. There's an ambient
+            light
+            for the fill and secondary colors.</p>
+        <p>With this project, I wanted to revisit my roots in 3D animation and see what I could create
+            utilizing WebGL.</p>
+        <section class="callout">
+            <h4 class="h4"><i class="fas fa-info-circle"></i>Tools Used:</h4>
+            <ul>
+                <li>Blender</li>
+                <li>Three.js</li>
+                <li>Javascript</li>
+            </ul>
+        </section>
+    
+    </div>    <canvas class="col1-6 tree" aria-hidden="true"></canvas>
+    <div class="col5-11">
+        <h3 class="h3"><i class="fas fa-tree"></i>TODO: figmaapi</h3>
+        <p>Change an assets using figma file with the figma api.</p>
+        <p></p>
+        <section class="callout">
+            <h4 class="h4"><i class="fas fa-info-circle"></i>Tools Used:</h4>
+            <ul>
+                <li>Figma API</li>
+                <li>Figma Components</li>
+            </ul>
+        </section>
+    </div>    
+    <div class="col5-11">
+        <h3 class="h3"><i class="fas fa-tree"></i>TODO: weatherforcast</h3>
+        <p>Show the weather forcast.</p>
+        <p></p>
+        <section class="callout">
+            <h4 class="h4"><i class="fas fa-info-circle"></i>Tools to Used:</h4>
+            <ul>
+                <li>Openweathermap API</li>
+            </ul>
+        </section>
+    </div></body>
 <script src="app.bundle.js"></script>
 </html>
