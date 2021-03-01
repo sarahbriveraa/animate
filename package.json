@@ -54,7 +54,7 @@
     "postcss-preset-env": "^6.7.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "three": "^0.98.0",
+    "three": "^0.125.0",
     "three-gltf-loader": "^1.105.0",
     "three-orbitcontrols": "^2.96.3",
     "three-trackballcontrols": "0.0.7",
